@@ -6,29 +6,28 @@ public class ThreadSafetyTester {
 
         /*Thread t1 = new Thread(() -> {
             methodOne("Jim", 12);  // t1 has its own local object reference not shared to other threads
-        });                                   // hence calling method with local object reference is thread safe
+        });                                   // hence, calling method with local object reference is thread safe
         t1.start();
 
 
         Thread t2 = new Thread(() -> {
             methodOne("Gary", 30);  // t2 has its own local object reference not shared to other threads
-        });                                    // hence calling method with local object reference is thread safe
+        });                                    // hence, calling method with local object reference is thread safe
         t2.start();*/
 
 
         //---------------------Shared instance----------------------//
-        NotThreadSafe sharedInstance = new NotThreadSafe();
+        /*NotThreadSafe sharedInstance = new NotThreadSafe();
 
         new Thread(new MyRunnable(sharedInstance)).start();     // sharedInstance, not thread safe
 
-        new Thread(new MyRunnable(sharedInstance)).start();     // sharedInstance, not thread safe
+        new Thread(new MyRunnable(sharedInstance)).start();     // sharedInstance, not thread safe*/
 
 
 
         //------------------Different instance-----------------------//
-        //new Thread(new MyRunnable(new NotThreadSafe())).start();    // different instance, thread safe
-        //new Thread(new MyRunnable(new NotThreadSafe())).start();    // different instance, thread safe
-
+        new Thread(new MyRunnable(new NotThreadSafe())).start();    // different instance, thread safe
+        new Thread(new MyRunnable(new NotThreadSafe())).start();    // different instance, thread safe
     }
 
 
@@ -36,15 +35,13 @@ public class ThreadSafetyTester {
     // Method with local object reference
     public static void methodOne(String name, int age){
         Person p = new Person(name, age);        // local Object reference
-        System.out.println(p);
-
-        methodTwo(p);
+        System.out.println(p.getName());
     }
 
     public static void methodTwo(Person p){
         p.setName("Unknown");
         p.setAge(0);
-        System.out.println(p);
+        System.out.println(p.getName());
     }
 }
 
@@ -90,5 +87,13 @@ class Person{
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
     }
 }

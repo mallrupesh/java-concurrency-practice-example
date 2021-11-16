@@ -3,6 +3,7 @@ package threadpool.javapool;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 
 public class ExecutorServiceTester {
 
@@ -15,6 +16,7 @@ public class ExecutorServiceTester {
 
         // ExecutorService instance
         ExecutorService executorService = Executors.newFixedThreadPool(3);   // Manage total of 3 threads
+
 
         // The Runnable classes
         ProducerOne producer = new ProducerOne(buffer);

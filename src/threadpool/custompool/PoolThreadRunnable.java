@@ -1,4 +1,4 @@
-package threadpool.mypool;
+package threadpool.custompool;
 
 import java.util.concurrent.BlockingQueue;
 

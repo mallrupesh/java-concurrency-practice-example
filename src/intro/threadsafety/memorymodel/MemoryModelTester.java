@@ -8,9 +8,15 @@ public class MemoryModelTester {
 
         System.out.println("Value of counter: " + sharedInstance.counter);
 
-        new Thread(new MyRunnable(sharedInstance)).start();
-        new Thread(new MyRunnable(sharedInstance)).start();
 
+        while(true) {
+            new Thread(new MyRunnable(sharedInstance)).start();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println("Thread: " + Thread.currentThread().getName() + ": " + e.getMessage());
+            }
+        }
     }
 }
 
@@ -25,7 +31,7 @@ class MyRunnable implements Runnable{
     @Override
     public void run() {
         int res = obj.increment();
-        System.out.println("Value of counter: " + res);
+        System.out.println("Thread: " + Thread.currentThread().getName() +  ", Value of counter: " + res);
     }
 }
 
@@ -35,8 +41,8 @@ class MyObject{
                                         // immediately flushed back to main memory so that the change is
                                         // immediately visible to other threads
     public int increment(){
-        synchronized (this){
-            return ++counter;
+        synchronized (this) {
+            return counter++;
         }
     }
 }

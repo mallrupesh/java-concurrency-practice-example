@@ -1,4 +1,4 @@
-package bockingqueue;
+package bockingqueue.customblockingqueue;
 
 import java.util.LinkedList;
 import java.util.List;

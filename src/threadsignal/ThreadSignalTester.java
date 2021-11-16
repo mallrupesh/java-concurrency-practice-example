@@ -55,9 +55,8 @@ public class ThreadSignalTester {
     public static void main(String[] args) {
         Parcel parcel = new Parcel();
 
-
-        new Thread(new Consumer(parcel)).start();
-        new Thread(new Producer(parcel)).start();
+        new Thread(new Consumer(parcel)).start();   // shared instance parcel
+        new Thread(new Producer(parcel)).start();   // shared instance parcel
     }
 }
 

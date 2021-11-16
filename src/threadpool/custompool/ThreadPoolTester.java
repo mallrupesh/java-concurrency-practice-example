@@ -1,4 +1,4 @@
-package threadpool.mypool;
+package threadpool.custompool;
 
 public class ThreadPoolTester {
 
