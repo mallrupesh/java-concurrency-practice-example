@@ -10,7 +10,7 @@ public class CallableTest {
     public static void main(String[] args) {
 
         // Callable object/lambda function that returns value
-        Callable<Integer> compute = () -> 123 * 123;
+        Callable<Integer> compute = () -> 2 * 5;
 
         // FutureTask that takes Callable object
         // FutureTask is just like Runnable
@@ -18,12 +18,15 @@ public class CallableTest {
 
         new Thread(task).start();   // start the new thread
 
+        Integer result = null;
+
         try {
-            Integer res = task.get();
-            System.out.println(res);
+            result = task.get();
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
+
+        System.out.println(result);
 
     }
 }

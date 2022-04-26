@@ -1,7 +1,5 @@
 package bockingqueue.customblockingqueue;
 
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class BlockingQueueTester {
@@ -58,11 +56,11 @@ class NumberProducer implements Runnable{
     public void generateNumbers() throws InterruptedException {
         int i, j;
         for(i = 0; i < 4; i++){
-            numbersQueue.enqueue(ThreadLocalRandom.current().nextInt(10));
+            numbersQueue.put(ThreadLocalRandom.current().nextInt(10));
         }
 
         for(j = 0; j < terminatorPerProducer; j++){
-            numbersQueue.enqueue(terminatorInt);
+            numbersQueue.put(terminatorInt);
         }
     }
 }
@@ -81,7 +79,7 @@ class NumberConsumer implements Runnable{
     public void run() {
         try{
             while(true){                                // consumer waits for the number to take from the queue
-                Integer number = numbersQueue.dequeue();
+                Integer number = numbersQueue.take();
                 if(number.equals(terminatorInt)){       // to stop consumer from indefinitely waiting for the number from queue
                     return;
                 }

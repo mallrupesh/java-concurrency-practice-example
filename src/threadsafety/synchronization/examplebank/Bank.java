@@ -1,4 +1,4 @@
-package intro.synchronisation;
+package threadsafety.synchronization.examplebank;
 
 import java.util.Arrays;
 
@@ -15,8 +15,8 @@ public class Bank {
      * @param initialBalance the initial balance for each account
      */
     public Bank(int n, double initialBalance) {
-        accounts = new double[n];               // create total number of account with specified value "n"
-        Arrays.fill(accounts, initialBalance);  // fill all accounts with initial balance
+        accounts = new double[n];               // create n number of accounts
+        Arrays.fill(accounts, initialBalance);  // fill each account with initial balance
     }
 
     /**
@@ -26,7 +26,6 @@ public class Bank {
      * @param amount the amount to transfer
      */
     public void transfer(int from, int to, double amount) {
-
         if(accounts[from] < amount) return;
         System.out.print(Thread.currentThread().getName());
         accounts[from] -= amount;

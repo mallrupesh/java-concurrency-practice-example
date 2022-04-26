@@ -1,4 +1,4 @@
-package intro.threadsafety.sharedInstance;
+package threadsafety.sharedInstance;
 
 public class ThreadSafetyTester {
 

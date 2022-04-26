@@ -1,4 +1,4 @@
-package intro.synchronisation;
+package threadsafety.synchronization.examplebank;
 
 import java.util.Arrays;
 import java.util.concurrent.locks.Condition;

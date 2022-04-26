@@ -6,7 +6,6 @@ public class DeadLockTester {
     public static final Object LOCK2 = new Object();
 
     public static void main(String[] args) {
-
         new Thread(new RunnableA()).start();
         new Thread(new RunnableB()).start();
 
@@ -14,12 +13,8 @@ public class DeadLockTester {
         new Thread(new Runnable2()).start();
     }
 
-
-
-
     // Different LOCK order, DeadLock!!!
     public static class RunnableA implements Runnable{
-
         @Override
         public void run() {
             synchronized (LOCK1){

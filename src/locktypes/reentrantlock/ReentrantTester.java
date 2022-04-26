@@ -7,10 +7,9 @@ import java.util.concurrent.locks.ReentrantLock;
 public class ReentrantTester {
 
     public static void main(String[] args) {
-
         List<String> list = new ArrayList<>();
 
-        // Create explicit lock
+        // Create lock i.e. shared among the threads
         ReentrantLock lock = new ReentrantLock();
 
         TheProducer producer = new TheProducer(list, lock);
@@ -65,7 +64,7 @@ class TheProducer implements Runnable {
         try{
             buffer.add("DONE");
         } finally {
-            lock.unlock();            // finally guarantees that the lock is released
+            lock.unlock();            // "finally" guarantees that the lock is released
         }
     }
 }
@@ -84,13 +83,12 @@ class TheConsumer implements Runnable {
     public void run() {
         //  int counter = 0;
         while(true){
-            if(lock.tryLock()){                 // check if the lock is available if yes acquire lock
+            if(lock.tryLock()){           // check if the lock is available if yes acquire lock
                 try {
-                    if(buffer.isEmpty()){       // if buffer is empty start over from the beginning of the loop
+                    if(buffer.isEmpty()){ // if buffer is empty start over from the beginning of the loop
                         continue;
                     }
                     //System.out.println("Counter: " + counter);
-
                     if(buffer.get(0).equals("DONE")) {       // if DONE exit
                         System.out.println(Thread.currentThread().getName() + ": Exiting...");
                         break;

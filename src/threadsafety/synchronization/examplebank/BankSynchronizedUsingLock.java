@@ -1,8 +1,5 @@
-package intro.synchronisation;
+package threadsafety.synchronization.examplebank;
 
-import locktypes.simplelock.Lock;
-
-import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
@@ -21,7 +18,6 @@ public class BankSynchronizedUsingLock {
     }
 
     public void transfer(int from, int to, double amount) {
-
         bankLock.lock();
 
         try{
